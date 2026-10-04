@@ -1,6 +1,7 @@
 import notifications.Channel;
 import notifications.EmailChannel;
 import notifications.Notification;
+import notifications.PushChannel;
 import notifications.Reminder;
 import notifications.SmsChannel;
 import notifications.UrgentAlert;
@@ -21,6 +22,7 @@ public class Main {
     private static void runDemo() {
         Channel email = new EmailChannel();
         Channel sms = new SmsChannel();
+        Channel push = new PushChannel();
 
         runCheck(
                 "T1",
@@ -47,6 +49,20 @@ public class Main {
                 "SMS [id=ALT-201, message=URGENT: Server room temperature is high]"
         );
         runSwitchCheck(email, sms);
+        runCheck(
+                "T6",
+                "Reminder + PushChannel",
+                new Reminder("REM-101", "Submit the design pattern assignment", push),
+                "PUSH notification envelope [id=REM-101, message=Reminder: "
+                        + "Submit the design pattern assignment]"
+        );
+        runCheck(
+                "T7",
+                "UrgentAlert + PushChannel",
+                new UrgentAlert("ALT-201", "Server room temperature is high", push),
+                "PUSH notification envelope [id=ALT-201, message=URGENT: "
+                        + "Server room temperature is high]"
+        );
 
         System.out.println("SUMMARY: " + passedChecks + "/" + totalChecks + " PASS");
     }
