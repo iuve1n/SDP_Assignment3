@@ -1,0 +1,8 @@
+T1 PASS | Reminder + EmailChannel | result=EMAIL envelope [id=REM-101, message=Reminder: Submit the design pattern assignment]
+T2 PASS | Reminder + SmsChannel | result=SMS [id=REM-101, message=Reminder: Submit the design pattern assignment]
+T3 PASS | UrgentAlert + EmailChannel | result=EMAIL envelope [id=ALT-201, message=URGENT: Server room temperature is high]
+T4 PASS | UrgentAlert + SmsChannel | result=SMS [id=ALT-201, message=URGENT: Server room temperature is high]
+T5 PASS | Reminder: EmailChannel -> SmsChannel | sameObject=true | stateUnchanged=true | before=EMAIL envelope [id=REM-301, message=Reminder: Bring a student ID] | after=SMS [id=REM-301, message=Reminder: Bring a student ID]
+T6 PASS | Reminder + PushChannel | result=PUSH notification envelope [id=REM-101, message=Reminder: Submit the design pattern assignment]
+T7 PASS | UrgentAlert + PushChannel | result=PUSH notification envelope [id=ALT-201, message=URGENT: Server room temperature is high]
+SUMMARY: 7/7 PASS
